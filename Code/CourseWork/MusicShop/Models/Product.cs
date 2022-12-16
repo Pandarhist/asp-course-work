@@ -10,7 +10,7 @@ namespace MusicShop.Models
         public int Id { get; set; }
 
         [Column("p_type")]
-        public ProductType Type { get; set; } = null!;
+        public int TypeId { get; set; }
 
         [Column("p_name")]
         public string Name { get; set; } = null!;
@@ -30,6 +30,7 @@ namespace MusicShop.Models
         [Column("p_is_deleted")]
         public bool IsDeleted { get; set; } = false;
 
-        public ICollection<ShoppingCart> ShoppingCarts { get; set; } = new List<ShoppingCart>();
+        [ForeignKey("p_type")]
+        public ProductType Type { get; set; } = null!;
     }
 }

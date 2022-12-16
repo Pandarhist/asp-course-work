@@ -10,7 +10,7 @@ namespace MusicShop.Models
         public int Id { get; set; }
 
         [Column("s_user")]
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
 
         [Column("s_surname")]
         public string Surname { get; set; } = null!;
@@ -26,7 +26,8 @@ namespace MusicShop.Models
 
         [Column("s_is_fired")]
         public bool IsFired { get; set; } = false;
-
-        public ICollection<Order> Orders { get; set; } = new List<Order>();
+        
+        [ForeignKey("s_user")]    
+        public User? User { get; set; }
     }
 }

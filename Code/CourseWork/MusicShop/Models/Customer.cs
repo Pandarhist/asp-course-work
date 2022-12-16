@@ -20,7 +20,5 @@ namespace MusicShop.Models
 
         [Column("c_phone")]
         public string PhoneNumber { get; set; } = null!;
-
-        public ICollection<Order> Orders { get; set; } = new List<Order>();
     }
 }

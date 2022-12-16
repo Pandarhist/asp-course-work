@@ -14,7 +14,5 @@ namespace MusicShop.Models
 
         [Column("u_password")]
         public string Password { get; set; } = null!;
-
-        public ICollection<Employee> Staff { get; set; } = new List<Employee>();
     }
 }

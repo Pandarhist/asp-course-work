@@ -11,7 +11,5 @@ namespace MusicShop.Models
 
         [Column("os_name")]
         public string Name { get; set; } = null!;
-
-        public ICollection<Order> Orders = new List<Order>();
     }
 }

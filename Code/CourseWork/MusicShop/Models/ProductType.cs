@@ -11,7 +11,5 @@ namespace MusicShop.Models
 
         [Column("pt_name")]
         public string Name { get; set; } = null!;
-
-        public ICollection<Product> Products { get; set; } = new List<Product>();
     }
 }

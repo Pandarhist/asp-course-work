@@ -10,16 +10,16 @@ namespace MusicShop.Models
         public int Id { get; set; }
 
         [Column("o_customer")]
-        public Customer? Customer { get; set; }
+        public int CustomerId { get; set; }
 
         [Column("o_employee")]
-        public Employee Employee { get; set; } = null!;
+        public int EmployeeId { get; set; }
 
         [Column("o_status")] 
-        public OrderStatus Status { get; set; } = null!;
+        public int StatusIs { get; set; }
 
         [Column("o_payment_type")]
-        public PaymentType PaymentType { get; set; } = null!;
+        public int PaymentTypeId { get; set; }
 
         [Column("o_total_cost")]
         public decimal TotalCost { get; set; }
@@ -30,6 +30,17 @@ namespace MusicShop.Models
         [Column("o_payment_date")]
         public DateTime? PaymentDate { get; set; }
 
-        public ICollection<ShoppingCart> ShoppingCarts { get; set;} = new List<ShoppingCart>(); 
+        [ForeignKey("o_customer")]
+        public Customer? Customer { get; set; }
+
+        [ForeignKey("o_employee")]
+        public Employee? Employee { get; set; } = null!;
+
+        [ForeignKey("o_status")]
+        public OrderStatus Status { get; set; } = null!;
+
+        [ForeignKey("o_payment_type")]
+        public PaymentType PaymentType { get; set; } = null!;
+
     }
 }

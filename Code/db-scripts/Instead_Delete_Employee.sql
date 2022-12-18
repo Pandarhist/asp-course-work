@@ -9,6 +9,5 @@ AS
 	BEGIN
 		UPDATE [Staff]
            SET [s_is_fired] = 1
-         WHERE [s_personnel_number] = (SELECT [s_personnel_number]
-                                         FROM deleted)
+         WHERE [s_personnel_number] = (SELECT [s_personnel_number] FROM deleted)
 	  END;

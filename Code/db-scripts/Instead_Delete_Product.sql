@@ -7,8 +7,7 @@ ON [Products]
 INSTEAD OF DELETE
 AS
 	BEGIN
-		UPDATE [Product]
+		UPDATE [Products]
            SET [p_is_deleted] = 1
-         WHERE [p_product_number] = (SELECT [p_product_number]
-                                       FROM deleted)
+         WHERE [p_number] = (SELECT [p_number] FROM deleted)
 	END;

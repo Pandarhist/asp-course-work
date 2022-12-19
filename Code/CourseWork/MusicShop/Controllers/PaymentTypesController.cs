@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MusicShop.DbContexts;
 using MusicShop.Models;
@@ -19,39 +14,16 @@ namespace MusicShop.Controllers
             _context = context;
         }
 
-        // GET: PaymentTypes
         public async Task<IActionResult> Index()
         {
               return View(await _context.PaymentTypes.ToListAsync());
         }
 
-        // GET: PaymentTypes/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.PaymentTypes == null)
-            {
-                return NotFound();
-            }
-
-            var paymentType = await _context.PaymentTypes
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (paymentType == null)
-            {
-                return NotFound();
-            }
-
-            return View(paymentType);
-        }
-
-        // GET: PaymentTypes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: PaymentTypes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name")] PaymentType paymentType)
@@ -65,7 +37,6 @@ namespace MusicShop.Controllers
             return View(paymentType);
         }
 
-        // GET: PaymentTypes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.PaymentTypes == null)
@@ -81,9 +52,6 @@ namespace MusicShop.Controllers
             return View(paymentType);
         }
 
-        // POST: PaymentTypes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] PaymentType paymentType)
@@ -116,7 +84,6 @@ namespace MusicShop.Controllers
             return View(paymentType);
         }
 
-        // GET: PaymentTypes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.PaymentTypes == null)
@@ -134,7 +101,6 @@ namespace MusicShop.Controllers
             return View(paymentType);
         }
 
-        // POST: PaymentTypes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -12,7 +12,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="TypeId"class="mb-2 control-label text-decoration-underline">Код типа</label>
+                <label asp-for="TypeId"class="mb-2 control-label text-decoration-underline">Типа товара</label>
                 <select asp-for="TypeId" class="form-control" asp-items="ViewBag.TypeId"></select>
                 <span asp-validation-for="TypeId" class="text-danger"></span>
             </div>
@@ -27,7 +27,7 @@
                 <span asp-validation-for="Producer" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Price" class="mb-2 control-label text-decoration-underline">Цена, у.е.</label>
+                <label asp-for="Price" class="mb-2 control-label text-decoration-underline">Цена</label>
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>

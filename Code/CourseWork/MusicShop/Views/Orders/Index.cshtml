@@ -8,6 +8,7 @@
 
 <div class="d-lg-flex">
     <a class="btn btn-primary ms-0 m-2" asp-action="Create">Оформить заказ</a>
+    <a class="btn btn-dark m-2" asp-action="SalesReport">Печать отчёта продаж</a>
     <a class="btn btn-secondary m-2" asp-controller="Home" asp-action="Index">Вернуться на главную</a>
 </div>
 <table class="table">
@@ -20,19 +21,10 @@
                 Код клиента
             </th>
             <th>
-                Код работника
-            </th>
-            <th>
                 Статус
             </th>
             <th>
                 Стоимость
-            </th>
-            <th>
-                Дата оформления
-            </th>
-            <th>
-                Дата оплаты
             </th>
             <th></th>
         </tr>
@@ -48,19 +40,10 @@
                     @Html.DisplayFor(modelItem => item.CustomerId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EmployeeId)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Status.Name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TotalCost)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.OrderDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PaymentDate)
                 </td>
                 <td class="btn-group" role="group">
                     <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@item.Id">Изменить</a>

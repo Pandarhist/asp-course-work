@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MusicShop.DbContexts;
@@ -28,7 +24,7 @@ namespace MusicShop.Controllers
         public IActionResult Create()
         {
             ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Id");
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id");
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name");
             return View();
         }
 
@@ -43,7 +39,7 @@ namespace MusicShop.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Id", shoppingCart.OrderId);
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", shoppingCart.ProductId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", shoppingCart.ProductId);
             return View(shoppingCart);
         }
 
@@ -60,7 +56,7 @@ namespace MusicShop.Controllers
                 return NotFound();
             }
             ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Id", shoppingCart.OrderId);
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", shoppingCart.ProductId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", shoppingCart.ProductId);
             return View(shoppingCart);
         }
 
@@ -95,7 +91,7 @@ namespace MusicShop.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Id", shoppingCart.OrderId);
-            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", shoppingCart.ProductId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Name", shoppingCart.ProductId);
             return View(shoppingCart);
         }
 

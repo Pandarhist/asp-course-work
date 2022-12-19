@@ -41,7 +41,7 @@ namespace MusicShop.Controllers
    
         public IActionResult Create()
         {
-            ViewData["TypeId"] = new SelectList(_context.ProductTypes, "Id", "Id");
+            ViewData["TypeId"] = new SelectList(_context.ProductTypes, "Id", "Name");
             return View();
         }
 
@@ -55,7 +55,7 @@ namespace MusicShop.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TypeId"] = new SelectList(_context.ProductTypes, "Id", "Id", product.TypeId);
+            ViewData["TypeId"] = new SelectList(_context.ProductTypes, "Id", "Name", product.TypeId);
             return View(product);
         }
 
@@ -71,7 +71,7 @@ namespace MusicShop.Controllers
             {
                 return NotFound();
             }
-            ViewData["TypeId"] = new SelectList(_context.ProductTypes, "Id", "Id", product.TypeId);
+            ViewData["TypeId"] = new SelectList(_context.ProductTypes, "Id", "Name", product.TypeId);
             return View(product);
         }
 
@@ -104,7 +104,7 @@ namespace MusicShop.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TypeId"] = new SelectList(_context.ProductTypes, "Id", "Id", product.TypeId);
+            ViewData["TypeId"] = new SelectList(_context.ProductTypes, "Id", "Name", product.TypeId);
             return View(product);
         }
 

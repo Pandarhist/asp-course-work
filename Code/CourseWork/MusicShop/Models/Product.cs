@@ -19,7 +19,7 @@ namespace MusicShop.Models
         public string Producer { get; set; } = null!;
 
         [Column("p_price")]
-        public decimal Price { get; set; } = 0;
+        public int Price { get; set; }
 
         [Column("p_description")]
         public string? Description { get; set; }
@@ -30,7 +30,7 @@ namespace MusicShop.Models
         [Column("p_is_deleted")]
         public bool IsDeleted { get; set; } = false;
 
-        [ForeignKey("p_type")]
-        public ProductType Type { get; set; } = null!;
+        [ForeignKey("TypeId")]
+        public ProductType? Type { get; set; }
     }
 }

@@ -10,19 +10,19 @@ namespace MusicShop.Models
         public int Id { get; set; }
 
         [Column("o_customer")]
-        public int CustomerId { get; set; }
+        public int? CustomerId { get; set; }
 
         [Column("o_employee")]
-        public int EmployeeId { get; set; }
+        public int? EmployeeId { get; set; }
 
-        [Column("o_status")] 
-        public int StatusIs { get; set; }
+        [Column("o_status")]
+        public int StatusId { get; set; } = 1;
 
         [Column("o_payment_type")]
         public int PaymentTypeId { get; set; }
 
         [Column("o_total_cost")]
-        public decimal TotalCost { get; set; }
+        public int TotalCost { get; set; }
 
         [Column("o_order_date")]
         public DateTime OrderDate { get; set; }
@@ -30,17 +30,16 @@ namespace MusicShop.Models
         [Column("o_payment_date")]
         public DateTime? PaymentDate { get; set; }
 
-        [ForeignKey("o_customer")]
+        [ForeignKey("CustomerId")]
         public Customer? Customer { get; set; }
 
-        [ForeignKey("o_employee")]
-        public Employee? Employee { get; set; } = null!;
+        [ForeignKey("EmployeeId")]
+        public Employee? Employee { get; set; }
 
-        [ForeignKey("o_status")]
-        public OrderStatus Status { get; set; } = null!;
+        [ForeignKey("StatusId")]
+        public OrderStatus? Status { get; set; }
 
-        [ForeignKey("o_payment_type")]
-        public PaymentType PaymentType { get; set; } = null!;
-
+        [ForeignKey("PaymentTypeId")]
+        public PaymentType? PaymentType { get; set; }
     }
 }

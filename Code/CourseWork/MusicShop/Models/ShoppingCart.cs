@@ -13,10 +13,11 @@ namespace MusicShop.Models
         [Column("sc_count")]
         public int Count { get; set; } = 1;
 
-        [ForeignKey("sc_order")]
-        public Order Order { get; set; } = null!;
+        [ForeignKey("OrderId")]
+        public Order? Order { get; set; }
 
-        [ForeignKey("sc_product")]
-        public Product Product { get; set; } = null!;
+        [ForeignKey("ProductId")]
+        public Product? Product { get; set; }
+
     }
 }

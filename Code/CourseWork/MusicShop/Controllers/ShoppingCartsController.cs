@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MusicShop.DbContexts;
@@ -19,13 +15,12 @@ namespace MusicShop.Controllers
             _context = context;
         }
 
-        // GET: ShoppingCarts
         public async Task<IActionResult> Index()
         {
-              return View(await _context.ShoppingCarts.ToListAsync());
+            var applicationContext = _context.ShoppingCarts.Include(s => s.Order).Include(s => s.Product);
+            return View(await applicationContext.ToListAsync());
         }
 
-        // GET: ShoppingCarts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.ShoppingCarts == null)
@@ -34,6 +29,8 @@ namespace MusicShop.Controllers
             }
 
             var shoppingCart = await _context.ShoppingCarts
+                .Include(s => s.Order)
+                .Include(s => s.Product)
                 .FirstOrDefaultAsync(m => m.OrderId == id);
             if (shoppingCart == null)
             {
@@ -43,15 +40,13 @@ namespace MusicShop.Controllers
             return View(shoppingCart);
         }
 
-        // GET: ShoppingCarts/Create
         public IActionResult Create()
         {
+            ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Id");
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id");
             return View();
         }
 
-        // POST: ShoppingCarts/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("OrderId,ProductId,Count")] ShoppingCart shoppingCart)
@@ -62,10 +57,11 @@ namespace MusicShop.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Id", shoppingCart.OrderId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", shoppingCart.ProductId);
             return View(shoppingCart);
         }
 
-        // GET: ShoppingCarts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.ShoppingCarts == null)
@@ -78,12 +74,11 @@ namespace MusicShop.Controllers
             {
                 return NotFound();
             }
+            ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Id", shoppingCart.OrderId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", shoppingCart.ProductId);
             return View(shoppingCart);
         }
 
-        // POST: ShoppingCarts/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("OrderId,ProductId,Count")] ShoppingCart shoppingCart)
@@ -113,10 +108,11 @@ namespace MusicShop.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Id", shoppingCart.OrderId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", shoppingCart.ProductId);
             return View(shoppingCart);
         }
 
-        // GET: ShoppingCarts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.ShoppingCarts == null)
@@ -125,6 +121,8 @@ namespace MusicShop.Controllers
             }
 
             var shoppingCart = await _context.ShoppingCarts
+                .Include(s => s.Order)
+                .Include(s => s.Product)
                 .FirstOrDefaultAsync(m => m.OrderId == id);
             if (shoppingCart == null)
             {
@@ -134,7 +132,6 @@ namespace MusicShop.Controllers
             return View(shoppingCart);
         }
 
-        // POST: ShoppingCarts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

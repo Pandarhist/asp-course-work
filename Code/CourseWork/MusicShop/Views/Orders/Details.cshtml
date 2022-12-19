@@ -58,8 +58,8 @@
         </dd>
     </dl>
     <div>
-        <a class="btn btn-primary w-100 p-1 mt-2" onclick="printReport" >Печатать заказа</a>
-        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-dark w-100 p-1 mt-2">Изменить</a>
-        <a asp-action="Index" class="btn btn-secondary w-100 p-1 mt-2">Вернуться к заказам</a>
+        <a class="btn btn-primary w-100 p-1 mt-2 d-print-none" onclick="printReport()">Печатать заказа</a>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-dark w-100 p-1 mt-2 d-print-none">Изменить</a>
+        <a asp-action="Index" class="btn btn-secondary w-100 p-1 mt-2 d-print-none">Вернуться к заказам</a>
     </div>
 </div>

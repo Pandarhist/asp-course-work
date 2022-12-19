@@ -10,7 +10,7 @@ AFTER INSERT, UPDATE
 AS
     BEGIN
         DECLARE @Order           AS INT,
-                @TotalCost       AS MONEY,
+                @TotalCost       AS INT,
                 @CancelledStatus AS INT,
                 @CurrentStatus   AS INT
         SET @Order = (SELECT TOP(1) [sc_order] FROM inserted)

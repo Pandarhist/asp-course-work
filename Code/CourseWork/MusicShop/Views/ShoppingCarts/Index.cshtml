@@ -1,47 +1,49 @@
 ﻿@model IEnumerable<MusicShop.Models.ShoppingCart>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Корзины";
 }
 
-<h1>Index</h1>
+<h1>Корзины заказов</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div>
+    <a class="btn btn-primary ms-0 m-2" asp-action="Create">Добавить товар в корзину</a>
+    <a class="btn btn-secondary m-2" asp-controller="Home" asp-action="Index">Вернуться на главную</a>
+</div>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Count)
+                Номер заказа
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Order)
+                Наименование товара
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Product)
+                Кол-во
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Count)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Order.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product.Id)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Count)
+                </td>
+                <td class="btn-group" role="group">
+                <td class="btn-group" role="group">
+                    <a class="btn btn-outline-dark" asp-action="Edit" asp-route-orderid="@item.OrderId" asp-route-productid="@item.ProductId">Изменить</a>
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-orderid="@item.OrderId" asp-route-productid="@item.ProductId">Удалить</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

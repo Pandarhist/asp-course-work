@@ -18,6 +18,5 @@ namespace MusicShop.Models
 
         [ForeignKey("ProductId")]
         public Product? Product { get; set; }
-
     }
 }

@@ -1,71 +1,73 @@
 ﻿@model IEnumerable<MusicShop.Models.Order>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Заказы";
 }
 
-<h1>Index</h1>
+<h1>Сведения о заказах</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="d-lg-flex">
+    <a class="btn btn-primary ms-0 m-2" asp-action="Create">Оформить заказ</a>
+    <a class="btn btn-secondary m-2" asp-controller="Home" asp-action="Index">Вернуться на главную</a>
+</div>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TotalCost)
+                Номер заказа
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderDate)
+                Код клиента
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PaymentDate)
+                Код работника
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Customer)
+                Статус
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Employee)
+                Стоимость
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                Дата оформления
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PaymentType)
+                Дата оплаты
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalCost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Customer.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employee.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymentType.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalCost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDate)
+                </td>
+                <td class="btn-group" role="group">
+                    <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
+                    <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id">Подробнее</a>
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Отменить</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

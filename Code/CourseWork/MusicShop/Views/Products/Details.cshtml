@@ -1,60 +1,64 @@
 ﻿@model MusicShop.Models.Product
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Сведения о товаре";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Product</h4>
+<div class="row mx-auto w-75">
+    <h4>Сведения о товаре</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+        <dt class="col-sm-4">
+            Артикул
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-4">
+            Наименование
+        </dt>
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Producer)
+        <dt class="col-sm-4">
+            Тип товара
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Type.Name)
+        </dd>
+        <dt class="col-sm-4">
+            Производитель
+        </dt>
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Producer)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
+        <dt class="col-sm-4">
+            Цена, у.е.
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Price)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
+        <dt class="col-sm-4">
+            Описание
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Description)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Amount)
+        <dt class="col-sm-4">
+            Кол-во
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.Amount)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsDeleted)
+        <dt class="col-sm-4">
+            В продаже
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Type.Id)
+        <dd class="col-sm-8">
+            @((Model.IsDeleted) ? "Нет" : "Да")
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-dark w-100 p-1 mt-2">Изменить</a>
+        <a asp-action="Index" class="btn btn-secondary w-100 p-1 mt-2">Вернуться к каталогу</a>
+    </div>
 </div>

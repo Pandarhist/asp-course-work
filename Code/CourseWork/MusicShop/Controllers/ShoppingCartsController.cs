@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MusicShop.DbContexts;
@@ -19,25 +23,6 @@ namespace MusicShop.Controllers
         {
             var applicationContext = _context.ShoppingCarts.Include(s => s.Order).Include(s => s.Product);
             return View(await applicationContext.ToListAsync());
-        }
-
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.ShoppingCarts == null)
-            {
-                return NotFound();
-            }
-
-            var shoppingCart = await _context.ShoppingCarts
-                .Include(s => s.Order)
-                .Include(s => s.Product)
-                .FirstOrDefaultAsync(m => m.OrderId == id);
-            if (shoppingCart == null)
-            {
-                return NotFound();
-            }
-
-            return View(shoppingCart);
         }
 
         public IActionResult Create()
@@ -62,14 +47,14 @@ namespace MusicShop.Controllers
             return View(shoppingCart);
         }
 
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? orderid, int? productid)
         {
-            if (id == null || _context.ShoppingCarts == null)
+            if (orderid == null || productid == null || _context.ShoppingCarts == null)
             {
                 return NotFound();
             }
 
-            var shoppingCart = await _context.ShoppingCarts.FindAsync(id);
+            var shoppingCart = await _context.ShoppingCarts.FindAsync(orderid, productid);
             if (shoppingCart == null)
             {
                 return NotFound();
@@ -79,11 +64,12 @@ namespace MusicShop.Controllers
             return View(shoppingCart);
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("OrderId,ProductId,Count")] ShoppingCart shoppingCart)
+        public async Task<IActionResult> Edit(int orderid, int productid, [Bind("OrderId,ProductId,Count")] ShoppingCart shoppingCart)
         {
-            if (id != shoppingCart.OrderId)
+            if (orderid != shoppingCart.OrderId && productid != shoppingCart.ProductId)
             {
                 return NotFound();
             }
@@ -97,7 +83,7 @@ namespace MusicShop.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ShoppingCartExists(shoppingCart.OrderId))
+                    if (!ShoppingCartExists(shoppingCart.OrderId, shoppingCart.ProductId))
                     {
                         return NotFound();
                     }
@@ -113,9 +99,9 @@ namespace MusicShop.Controllers
             return View(shoppingCart);
         }
 
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? orderid, int? productid)
         {
-            if (id == null || _context.ShoppingCarts == null)
+            if (orderid == null || productid == null || _context.ShoppingCarts == null)
             {
                 return NotFound();
             }
@@ -123,7 +109,7 @@ namespace MusicShop.Controllers
             var shoppingCart = await _context.ShoppingCarts
                 .Include(s => s.Order)
                 .Include(s => s.Product)
-                .FirstOrDefaultAsync(m => m.OrderId == id);
+                .FirstOrDefaultAsync(m => m.OrderId == orderid && m.ProductId == productid);
             if (shoppingCart == null)
             {
                 return NotFound();
@@ -134,13 +120,13 @@ namespace MusicShop.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int orderid, int productid)
         {
             if (_context.ShoppingCarts == null)
             {
                 return Problem("Entity set 'ApplicationContext.ShoppingCarts'  is null.");
             }
-            var shoppingCart = await _context.ShoppingCarts.FindAsync(id);
+            var shoppingCart = await _context.ShoppingCarts.FindAsync(orderid, productid);
             if (shoppingCart != null)
             {
                 _context.ShoppingCarts.Remove(shoppingCart);
@@ -150,9 +136,9 @@ namespace MusicShop.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ShoppingCartExists(int id)
+        private bool ShoppingCartExists(int orderid, int productid)
         {
-          return _context.ShoppingCarts.Any(e => e.OrderId == id);
+          return _context.ShoppingCarts.Any(e => e.OrderId == orderid && e.ProductId == productid);
         }
     }
 }

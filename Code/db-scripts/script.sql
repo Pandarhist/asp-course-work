@@ -102,7 +102,7 @@ CREATE TABLE [Orders]
 	[o_employee] int NULL,	-- Сотрудник, принявший заказ
 	[o_status] int NOT NULL DEFAULT 1,	-- Статус заказа
 	[o_payment_type] int NOT NULL,
-	[o_total_cost] money NOT NULL DEFAULT 0,
+	[o_total_cost] int NOT NULL DEFAULT 0,
 	[o_order_date] datetime NOT NULL,
 	[o_payment_date] datetime NULL
 )
@@ -128,7 +128,7 @@ CREATE TABLE [Products]
 	[p_type] int NOT NULL,	-- Тип товара
 	[p_name] nvarchar(200) NOT NULL,	-- Наименование товара
 	[p_producer] nvarchar(200) NOT NULL,	-- Производитель
-	[p_price] money NOT NULL DEFAULT 0,	-- Цена товара
+	[p_price] int NOT NULL DEFAULT 0,	-- Цена товара
 	[p_description] nvarchar(max) NULL,	-- Описание
 	[p_amount] int NOT NULL DEFAULT 0,	-- Количество на складе
 	[p_is_deleted] bit NOT NULL DEFAULT 0	-- Удалён ли товар?  0 - нет, 1 -да

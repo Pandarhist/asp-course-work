@@ -1,60 +1,65 @@
 ﻿@model MusicShop.Models.Order
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Сведения о заказе";
 }
 
-<h1>Details</h1>
-
-<div>
-    <h4>Order</h4>
+<div class="row mx-auto w-75">
+    <h4>Сведения о заказе</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TotalCost)
+        <dt class="col-sm-4">
+            Номер заказа
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-4">
+            Покупатель
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Customer.Surname)
+        </dd>
+        <dt class="col-sm-4">
+            Статус заказа
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Status.Name)
+        </dd>
+        <dt class="col-sm-4">
+            Стоимость
+        </dt>
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.TotalCost)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OrderDate)
+        <dt class="col-sm-4">
+            Тип оплаты
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.PaymentType.Name)
+        </dd>
+        <dt class="col-sm-4">
+            Оформивший сотрудник
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Employee.Surname)
+        </dd>
+        <dt class="col-sm-4">
+            Дата оформления
+        </dt>
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.OrderDate)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PaymentDate)
+        <dt class="col-sm-4">
+            Дата оплаты
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.PaymentDate)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Customer)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Customer.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Employee)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Employee.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PaymentType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PaymentType.Id)
-        </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <div>
+        <a class="btn btn-primary w-100 p-1 mt-2" onclick="printReport" >Печатать заказа</a>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-dark w-100 p-1 mt-2">Изменить</a>
+        <a asp-action="Index" class="btn btn-secondary w-100 p-1 mt-2">Вернуться к заказам</a>
+    </div>
 </div>

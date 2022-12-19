@@ -1,35 +1,42 @@
 ﻿@model MusicShop.Models.ShoppingCart
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Изменить корзину заказа";
 }
 
-<h1>Edit</h1>
-
-<h4>ShoppingCart</h4>
-<hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5 mx-auto">
         <form asp-action="Edit">
+            <h4>Заявка на товар</h4>
+            <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="OrderId" />
-            <input type="hidden" asp-for="ProductId" />
-            <div class="form-group">
-                <label asp-for="Count" class="control-label"></label>
-                <input asp-for="Count" class="form-control" />
+            <div>
+                <label asp-for="ProductId" class="mb-2 control-label text-decoration-underline">Номер заказа</label>
+                <input asp-for="OrderId" class="form-control" readonly />
+                <span asp-validation-for="Count" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="ProductId" class="mb-2 control-label text-decoration-underline">Артикул товара</label>
+                <input asp-for="ProductId" class="form-control" readonly />
                 <span asp-validation-for="Count" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <label asp-for="Count" class="mb-2 control-label text-decoration-underline">Кол-во</label>
+                <input asp-for="Count" class="form-control" min="1" />
+                <span asp-validation-for="Count" class="text-danger"></span>
+            </div>
+            <div class="form-group d-flex mt-2">
+                <input type="submit" value="Сохранить" class="btn btn-primary w-100" />
             </div>
         </form>
+        <div class="d-flex">
+            <a asp-action="Index" class="btn btn-secondary w-100 p-1 mt-2">Вернуться к каталогу</a>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

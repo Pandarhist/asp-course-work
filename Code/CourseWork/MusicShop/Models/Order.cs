@@ -22,7 +22,7 @@ namespace MusicShop.Models
         public int PaymentTypeId { get; set; }
 
         [Column("o_total_cost")]
-        public int TotalCost { get; set; }
+        public int TotalCost { get; set; } = 0;
 
         [Column("o_order_date")]
         public DateTime OrderDate { get; set; }

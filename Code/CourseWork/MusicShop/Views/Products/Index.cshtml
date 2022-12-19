@@ -1,71 +1,67 @@
 ﻿@model IEnumerable<MusicShop.Models.Product>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Каталог";
 }
 
-<h1>Index</h1>
+<h1>Каталог товаров</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div>
+    <a class="btn btn-primary ms-0 m-2" asp-action="Create">Добавить товар</a>
+    <a class="btn btn-secondary m-2" asp-controller="Home" asp-action="Index">Вернуться на главную</a>
+</div>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Артикул
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Producer)
+                Наименование
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                Тип товара
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                Цена, у.е.
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Amount)
+                Кол-во
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsDeleted)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
+                В продаже
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Producer)
+                @Html.DisplayFor(modelItem => item.Type.Name)
             </td>
-            <td>
+            <td class="text-center">
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
+            <td class="text-center">
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDeleted)
+            <td class="text-center">
+                @((item.IsDeleted) ? "Нет" : "Да")
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            <td class="btn-group" role="group">
+                <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
+                <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.Id">Подробнее</a>
+                <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>

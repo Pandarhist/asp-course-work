@@ -1,0 +1,67 @@
+﻿@model MusicShop.Models.Order
+
+@{
+    ViewData["Title"] = "Сведения о заказе";
+}
+
+<div class="row mx-auto w-75">
+    <h4>Сведения о заказе</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">
+            Номер заказа
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-4">
+            Покупатель
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Customer.Surname)
+        </dd>
+        <dt class="col-sm-4">
+            Статус заказа
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Status.Name)
+        </dd>
+        <dt class="col-sm-4">
+            Стоимость
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.TotalCost)
+        </dd>
+        <dt class="col-sm-4">
+            Тип оплаты
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.PaymentType.Name)
+        </dd>
+        <dt class="col-sm-4">
+            Оформивший сотрудник
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Employee.Surname)
+        </dd>
+        <dt class="col-sm-4">
+            Дата оформления
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+        <dt class="col-sm-4">
+            Дата оплаты
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.PaymentDate)
+        </dd>
+    </dl>
+    <div class="d-flex justify-content-between my-2">
+        <a class="btn btn-primary w-50 p-1 me-1 d-print-none" onclick="printReport()">Печатать заказа</a>
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-dark w-50 p-1 ms-1 d-print-none">Изменить</a>
+    </div>
+    <div class="mt-2">
+        <a asp-action="Index" class="btn btn-secondary w-100 p-1 d-print-none">Вернуться к заказам</a>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+﻿@model MusicShop.Models.Employee
+
+@{
+    ViewData["Title"] = "Увольнение сотрудника";
+}
+
+<div class="row mx-auto w-75">
+    <h4>Вы уверены, что хотите уволить этого сотрудника?</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">
+            Табельный номер
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-4">
+            Пользователь
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+        <dt class="col-sm-4">
+            Фамилия
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+        <dt class="col-sm-4">
+            Имя
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-4">
+            Отчество
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Patronymic)
+        </dd>
+        <dt class="col-sm-4">
+            Должность
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Post)
+        </dd>
+    </dl>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Удалить" class="btn btn-danger w-100 p-1 mt-2" />
+        <a asp-action="Index" class="btn btn-secondary w-100 p-1 mt-2">Вернуться к сотрудникам</a>
+    </form>
+</div>

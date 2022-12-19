@@ -1,0 +1,36 @@
+﻿@model MusicShop.Models.ShoppingCart
+
+@{
+    ViewData["Title"] = "Удалить товар из корзины";
+}
+
+<div class="row mx-auto w-75">
+    <h4>Вы уверены, что хотите удалить этот товар из корзины?</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">
+            Номер заказа
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Order.Id)
+        </dd>
+        <dt class="col-sm-4">
+            Наименование товара
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Product.Name)
+        </dd>
+        <dt class="col-sm-4">
+            Кол-во
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Count)
+        </dd>
+    </dl>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="OrderId" />
+        <input type="hidden" asp-for="ProductId" />
+        <input type="submit" value="Удалить" class="btn btn-danger w-100 p-1 mt-2" />
+        <a asp-action="Index" class="btn btn-secondary w-100 p-1 mt-2">Вернуться к корзинам</a>
+    </form>
+</div>

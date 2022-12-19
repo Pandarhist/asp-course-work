@@ -1,0 +1,53 @@
+﻿@model MusicShop.Models.Employee
+
+@{
+    ViewData["Title"] = "Изменение сотрудника";
+}
+
+<div class="row">
+    <div class="col-md-5 mx-auto">
+        <form asp-action="Edit">
+            <h4>Сведения о сотруднике</h4>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="UserId" class="mb-2 control-label text-decoration-underline">Пользователь в системе</label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname" class="mb-2 control-label text-decoration-underline">Фамилия</label>
+                <input asp-for="Surname" class="form-control" placeholder="Иванов" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="my-2 control-label text-decoration-underline">Имя</label>
+                <input asp-for="Name" class="form-control" placeholder="Иван" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Patronymic" class="my-2 control-label text-decoration-underline">Отчество</label>
+                <input asp-for="Patronymic" class="form-control" placeholder="Иванович" />
+                <span asp-validation-for="Patronymic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Post" class="mb-2 control-label text-decoration-underline">Должность</label>
+                <input asp-for="Post" class="form-control" />
+                <span asp-validation-for="Post" class="text-danger"></span>
+            </div>
+            <div class="form-group d-flex mt-2">
+                <input type="submit" value="Сохранить" class="btn btn-primary w-100" />
+            </div>
+        </form>
+        <div class="d-flex">
+            <a asp-action="Index" class="btn btn-secondary w-100 p-1 mt-2">Вернуться к сотрудникам</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

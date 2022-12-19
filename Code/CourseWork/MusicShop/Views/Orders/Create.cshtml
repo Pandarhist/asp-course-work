@@ -1,0 +1,48 @@
+﻿@model MusicShop.Models.Order
+
+@{
+    ViewData["Title"] = "Оформить заказ";
+}
+
+<div class="row">
+    <div class="col-md-5 mx-auto">
+        <form asp-action="Create">
+            <h4>Оформление заказа</h4>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CustomerId" class="mb-2 control-label text-decoration-underline">Покупатель</label>
+                <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeId" class="mb-2 control-label text-decoration-underline">Сотрудник</label>
+                <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+                <span asp-validation-for="EmployeeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentTypeId" class="mb-2 control-label text-decoration-underline">Тип оплаты</label>
+                <select asp-for="PaymentTypeId" class="form-control" asp-items="ViewBag.PaymentTypeId"></select>
+                <span asp-validation-for="PaymentTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDate" class="mb-2 control-label text-decoration-underline"></label>
+                <input asp-for="OrderDate" class="form-control" value="@DateTime.Now" />
+                <span asp-validation-for="OrderDate" class="text-danger"></span>
+            </div>
+            <div class="form-group d-flex justify-content-between mt-2">
+                <input type="submit" value="Оформить" class="btn btn-primary w-50 me-1" />
+                <input type="reset" value="Очистить" class="btn btn-dark w-50 ms-1" />
+            </div>
+        </form>
+        <div class="d-flex">
+            <a asp-action="Index" class="btn btn-secondary w-100 p-1 mt-2">Вернуться к заказам</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

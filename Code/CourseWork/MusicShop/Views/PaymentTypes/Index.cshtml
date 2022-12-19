@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MusicShop.Models.PaymentType>
+
+@{
+    ViewData["Title"] = "Способы оплаты";
+}
+
+<h1>Сведения о способах оплаты</h1>
+
+<div>
+    <a class="btn btn-primary ms-0 m-2" asp-action="Create">Добавить способ оплаты</a>
+    <a class="btn btn-secondary m-2" asp-controller="Home" asp-action="Index">Вернуться на главную</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Код
+            </th>
+            <th>
+                Способ оплаты
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td class="btn-group" role="group">
+                    <a class="btn btn-outline-dark" asp-action="Edit" asp-route-id="@item.Id">Изменить</a>
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

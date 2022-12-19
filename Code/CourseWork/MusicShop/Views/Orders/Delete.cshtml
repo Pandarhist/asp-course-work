@@ -1,0 +1,65 @@
+﻿@model MusicShop.Models.Order
+
+@{
+    ViewData["Title"] = "Отмена заказа";
+}
+
+<div class="row mx-auto w-75">
+    <h4>Вы уверены, что хотите отменить этот заказ?</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">
+            Номер заказа
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-4">
+            Покупатель
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Customer.Surname)
+        </dd>
+        <dt class="col-sm-4">
+            Статус заказа
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Status.Name)
+        </dd>
+        <dt class="col-sm-4">
+            Стоимость
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.TotalCost)
+        </dd>
+        <dt class="col-sm-4">
+            Тип оплаты
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.PaymentType.Name)
+        </dd>
+        <dt class="col-sm-4">
+            Оформивший сотрудник
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Employee.Surname)
+        </dd>
+        <dt class="col-sm-4">
+            Дата оформления
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+        <dt class="col-sm-4">
+            Дата оплаты
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.PaymentDate)
+        </dd>
+    </dl>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Отменить" class="btn btn-danger w-100 p-1 mt-2" />
+        <a asp-action="Index" class="btn btn-secondary w-100 p-1 mt-2">Вернуться к заказам</a>
+    </form>
+</div>

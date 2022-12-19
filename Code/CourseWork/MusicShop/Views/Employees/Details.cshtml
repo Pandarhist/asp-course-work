@@ -1,0 +1,58 @@
+﻿@model MusicShop.Models.Employee
+
+@{
+    ViewData["Title"] = "Сведения о сотруднике";
+}
+
+<div class="row mx-auto w-75">
+    <h4>Сведения о работнике</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">
+            Табельный номер
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-4">
+            Пользователь
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+        <dt class="col-sm-4">
+            Фамилия
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+        <dt class="col-sm-4">
+            Имя
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-4">
+            Отчество
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Patronymic)
+        </dd>
+        <dt class="col-sm-4">
+            Должность
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Post)
+        </dd>
+        <dt class="col-sm-4">
+            Работает
+        </dt>
+        <dd class="col-sm-8">
+            @((Model.IsFired) ? "Нет" : "Да")
+        </dd>
+    </dl>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-dark w-100 p-1 mt-2">Изменить</a>
+        <a asp-action="Index" class="btn btn-secondary w-100 p-1 mt-2">Вернуться к сотрудникам</a>
+    </div>
+</div>

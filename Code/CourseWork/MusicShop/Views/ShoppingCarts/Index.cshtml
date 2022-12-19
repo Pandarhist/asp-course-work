@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MusicShop.Models.ShoppingCart>
+
+@{
+    ViewData["Title"] = "Корзины";
+}
+
+<h1>Корзины заказов</h1>
+
+<div>
+    <a class="btn btn-primary ms-0 m-2" asp-action="Create">Добавить товар в корзину</a>
+    <a class="btn btn-secondary m-2" asp-controller="Home" asp-action="Index">Вернуться на главную</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Номер заказа
+            </th>
+            <th>
+                Наименование товара
+            </th>
+            <th>
+                Кол-во
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Count)
+                </td>
+                <td class="btn-group" role="group">
+                <td class="btn-group" role="group">
+                    <a class="btn btn-outline-dark" asp-action="Edit" asp-route-orderid="@item.OrderId" asp-route-productid="@item.ProductId">Изменить</a>
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-orderid="@item.OrderId" asp-route-productid="@item.ProductId">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

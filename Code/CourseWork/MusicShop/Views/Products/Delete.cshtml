@@ -1,0 +1,65 @@
+﻿@model MusicShop.Models.Product
+
+@{
+    ViewData["Title"] = "Удалить товар";
+}
+
+<div class="row mx-auto w-75">
+    <h4>Вы уверены, что хотите удалить этот товар?</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">
+            Артикул
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-4">
+            Наименование
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-4">
+            Тип товара
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Type.Name)
+        </dd>
+        <dt class="col-sm-4">
+            Производитель
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Producer)
+        </dd>
+        <dt class="col-sm-4">
+            Цена
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class="col-sm-4">
+            Описание
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-4">
+            Кол-во
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+        <dt class="col-sm-4">
+            В продаже
+        </dt>
+        <dd class="col-sm-8">
+            @((Model.IsDeleted) ? "Нет" : "Да")
+        </dd>
+    </dl>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Удалить" class="btn btn-danger w-100 p-1 mt-2" />
+        <a asp-action="Index" class="btn btn-secondary w-100 p-1 mt-2">Вернуться к каталогу</a>
+    </form>
+</div>
